@@ -1,0 +1,9 @@
+We are testing for different values of dr in the correlation function. It seems like larger dr allows better sampling from the maps when they have lower resolution. We tried for a Nside=128 gaussian map ; we explore w(5) for different dr. The results are shown in the image named gaussian.jpg and the plot is correlation vs dr. each point is a multiple of the resolution. The code used is the following:
+
+m=np.random.normal(size=hp.nside2npix(128))
+resol = np.degrees(hp.nside2resol(128))
+
+dr = [resol, 2*resol, 4*resol, 8*resol, 16*resol, 20*resol, 30*resol, 40*resol, 50*resol, 70*resol, 100*resol]
+temp = [compute_corr(m,m,5,thick) for thick in tqdm(dr)]
+y,_ = zip(*temp)
+plt.plot(dr,y,'.')
