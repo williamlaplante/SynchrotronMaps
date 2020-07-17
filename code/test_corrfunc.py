@@ -44,6 +44,20 @@ class TestCorrfunc(unittest.TestCase):
         a = np.zeros(hp.nside2npix(nside))
         self.assertAlmostEqual(compute_corr(a,b,R,dr)[0], 0)
         
+
+        #test for annuli with thickness that is too small for map resolution
+        a = np.random.normal(size=hp.nside2npix(nside))
+        b = np.random.normal(size=hp.nside2npix(nside))
+        thick = np.degrees(hp.nside2resol(nside))
+
+        self.assertEqual(compute_corr(a,b,R,thick)[0], compute_corr(a,b,R,thick/10)[0])
+
+        #test for when R=0
+        self.assertEqual(compute_corr(a,b,0,thick)[0], (a*b).mean())
+        
+        #test for when radius is smaller than resolution
+        self.assertEqual(compute_corr(a,b,thick/6,thick)[0], compute_corr(a,b,thick/4,thick)[0])
+
     def test_query_annulus(self):
         #resolution vs dr test
         
