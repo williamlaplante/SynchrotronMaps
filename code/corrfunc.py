@@ -1,6 +1,23 @@
 import numpy as np
 import healpy as hp
 
+'''
+Notes:
+
+ - hp.query_disc : whenever R<resol, it always returns a single element, the index if the input center
+ vector. Moreover, the resolution is not a lower limit. That is, a disk of radius R and a disk of radius
+ R + resol/n will not return the same thing for n=1. We require n>~10 or something. 
+ Try this code snippet if you ever don't believe this : 
+    
+    ---------------------------------------------------------------
+    resol = np.degrees(hp.nside2resol(32))
+    vec = hp.pix2vec(32,0)
+    for n in range(1,10,2):
+        print(hp.query_disc(32, vec, np.radians(resol + resol/n)))
+    ----------------------------------------------------------------
+
+'''
+
 def query_annulus(m, nside, vec, R, dr, nest=False, idx=False):
     '''
     queries an annulus centered at vec with radius R < r < R + dr on a map m with resolution nside
@@ -83,17 +100,19 @@ def compute_corr(map1, map2, R, dr, nest=False):
     #parameters
     nside = hp.get_nside(map1)
     npix = hp.nside2npix(nside) 
+    resol = np.degrees(hp.nside2resol(nside))
 
-    if dr < np.degrees(hp.nside2resol(nside)):
-        dr = np.degrees(hp.nside2resol(nside))
-
+    if dr < resol:
+        dr = resol
 
     if R==0: 
         return (map1*map2).mean(), (map1*map2).std()/np.sqrt(npix)
-    else: 
-        ring_len = get_annuli_len(nside, R, dr, step=4, nest=nest)
 
-    
+    elif R<resol:
+        R = resol
+
+    ring_len = get_annuli_len(nside, R, dr, step=4, nest=nest)
+
     #Get the desired pixels and the vectors associated with them.
     pix1, pix2 = np.arange(npix)[map1!=hp.UNSEEN], np.arange(npix)[map2!=hp.UNSEEN]
     pix_inter =  np.intersect1d(pix1,pix2)

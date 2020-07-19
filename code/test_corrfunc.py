@@ -1,5 +1,5 @@
 import unittest
-from corrfunc import compute_corr
+from corrfunc import compute_corr, query_annulus
 import numpy as np
 import healpy as hp
 
@@ -59,13 +59,31 @@ class TestCorrfunc(unittest.TestCase):
         self.assertEqual(compute_corr(a,b,thick/6,thick)[0], compute_corr(a,b,thick/4,thick)[0])
 
     def test_query_annulus(self):
+        nside=32
+        resol = np.degrees(hp.nside2resol(nside))
+        center = hp.pix2vec(nside,0)
+        m = np.random.normal(size=hp.nside2npix(nside))
+
         #resolution vs dr test
-        
-        #r<resolution -> full circle
-        
+        resol = np.degrees(hp.nside2resol(nside))
+        self.assertRaises(Exception, query_annulus, m, nside, center, 5, resol/100, idx=True)
+
+        #when r << resolution -> same as full circle. (i.e. when the inner radius is below the lower limit which is a func of resol)
+        a1 = np.append(np.zeros(1),query_annulus(m,nside,center,resol/100,10,idx=True)).astype(int)
+        a2 = hp.query_disc(nside,center,np.radians(10))
+        self.assertTrue(np.allclose(a1,a2))
+
         #combination of r1-r2 and r2-r3 same as r1-r3
-        
+        r1_r2 = query_annulus(m,nside,center,5,1,idx=True)
+        r2_r3 = query_annulus(m,nside,center,6,1,idx=True)
+        r1_r3 = query_annulus(m,nside,center,5,2,idx=True)
+        arr1 = np.sort(np.concatenate((r1_r2,r2_r3)))
+        arr2 = np.sort(r1_r3)
+        self.assertEqual(arr1.size, arr2.size)
+        self.assertTrue(np.allclose(arr1,arr2))
+   
         #how it deals hp.UNSEEN ; different tests for maps with boundaries
+
         pass
         
         
