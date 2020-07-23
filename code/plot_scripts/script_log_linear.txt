@@ -1,0 +1,2 @@
+_RegisterApplication(), FAILED TO establish the default connection to the WindowServer, _CGSDefaultConnection() is NULL.
+Finished in 107.409770923 second(s)
