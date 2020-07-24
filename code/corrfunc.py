@@ -111,7 +111,7 @@ def compute_corr(map1, map2, R, dr, nest=False):
     elif R<resol:
         R = resol
 
-    ring_len = get_annuli_len(nside, R, dr, step=4, nest=nest)
+    ring_len = get_annuli_len(nside, R, dr, step=1, nest=nest)
 
     #Get the desired pixels and the vectors associated with them.
     pix1, pix2 = np.arange(npix)[map1!=hp.UNSEEN], np.arange(npix)[map2!=hp.UNSEEN]
