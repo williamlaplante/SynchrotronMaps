@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/Users/williiamlaplante/Research/SynchrotronMaps/code')
+sys.path.append('../')
 from corrfunc import compute_corr
 import matplotlib.pyplot as plt
 import numpy as np
@@ -48,7 +48,7 @@ for nside in [128]:
     else:
         plt.xscale('log')
 
-    filename = '/Users/williiamlaplante/Research/SynchrotronMaps/code/temp/corr_dust_maps'+str(nside)+'.%d.jpg' % time.time()
+    filename = '../temp/corr_dust_maps_'+str(nside)+'.%d.jpg' % time.time()
     plt.savefig(filename) 
     plt.clf()
 

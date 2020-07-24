@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/Users/williiamlaplante/Research/SynchrotronMaps/code')
+sys.path.append('../')
 import unittest
 from corrfunc import compute_corr, query_annulus
 import numpy as np

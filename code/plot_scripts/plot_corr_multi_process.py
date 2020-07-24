@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/Users/williiamlaplante/Research/SynchrotronMaps/code')
+sys.path.append('../')
 from corrfunc import compute_corr
 import matplotlib.pyplot as plt
 import numpy as np
@@ -11,7 +11,7 @@ import time
 start = time.perf_counter()
     
 #Fixing parameters
-nside = 128	
+nside = 4096	
 resol = np.degrees(hp.nside2resol(nside)) #degrees 
 
 #retrieving maps
@@ -43,7 +43,7 @@ plt.legend()
 plt.title('Correlation plot for dust maps with NSIDE='+str(nside))
 plt.xscale('log')
 
-filename = '/Users/williiamlaplante/Research/SynchrotronMaps/code/temp/corr_dust_maps'+str(nside)+'.%d.jpg' % time.time()
+filename = '../temp/corr_dust_maps_'+str(nside)+'.%d.jpg' % time.time()
 plt.savefig(filename) 
 
 end = time.perf_counter()
