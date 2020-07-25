@@ -11,7 +11,7 @@ import time
 start = time.perf_counter()
     
 #Fixing parameters
-nside = 4096	
+nside = 1024	
 resol = np.degrees(hp.nside2resol(nside)) #degrees 
 
 #retrieving maps
