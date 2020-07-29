@@ -1,6 +1,5 @@
-
 '''
-Computational script. Exports the x and y data in an npz file.
+Exports correlation values and corresponding thetas in an npz file.
 '''
 import sys
 sys.path.append('../../')
@@ -52,13 +51,7 @@ for nside in nsides:
 
 	
 	filename = './out/arr_'+str(nside)+'.%d.jpg' % time.time()
-	np.savez(filename,
-					x_values=x,
-					y_values_gen_legendre = y_values_gen_legendre,
-					y_values_gen_hc = y_values_gen_hc,
-					y_error_gen_hc = y_error_gen_hc,
-					**{col_name: np.array(col_vals) for col_name, col_vals in Y.iteritems()},
-					**{col_name: np.array(col_vals) for col_name, col_vals in Y_err.iteritems()})
+	np.savez(filename,x_values=x, y_values_gen_legendre = y_values_gen_legendre, y_values_gen_hc = y_values_gen_hc, y_error_gen_hc = y_error_gen_hc, **{col_name: np.array(col_vals) for col_name, col_vals in Y.iteritems()}, **{col_name: np.array(col_vals) for col_name, col_vals in Y_err.iteritems()})
 
 '''
 The arrays are composed as follows (not following same ordering, but same labeling):
