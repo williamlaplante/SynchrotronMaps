@@ -5,6 +5,7 @@ import sys
 sys.path.append('../../')
 from corrfunc import compute_corr, C
 import numpy as np
+import pandas as pd
 from processing import generate_ref_maps, generate_dust_maps
 import concurrent.futures
 import healpy as hp

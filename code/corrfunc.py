@@ -126,14 +126,13 @@ def compute_corr(map1, map2, R, dr, nest=False):
     return result.mean(), result.std()/np.sqrt(npix)
 
 
-    def C(theta, C_l):
-        '''
-        Given Cl's, it returns the correlation value for some distance theta.
-        Note: theta is assumed to be in degrees.
-        '''
-        l_max=len(C_l)
-        res=0
-        for l in range(l_max):
-            res+= C_l[l] * ((2*l + 1)/4*np.pi) * legendre(l)(np.cos(np.radians(theta)))
-            
-        return res
+def C(theta, C_l):
+    '''
+    Given Cl's, it returns the correlation value for some distance theta.
+    Note: theta is assumed to be in degrees.
+    '''
+    l_max=len(C_l)
+    res=0
+    for l in range(l_max):
+        res+= C_l[l] * ((2*l + 1)/4*np.pi) * legendre(l)(np.cos(np.radians(theta)))        
+    return res
