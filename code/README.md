@@ -10,7 +10,7 @@
 
  - notebooks : contains jupyter notebook used for interactive analysis
 
- - plot_scripts : where plotting scripts are located. 
+ - scripts : where jobs are located. 
 
 # Modules
 
