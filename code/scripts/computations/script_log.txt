@@ -1,0 +1,14 @@
+/Users/williiamlaplante/.local/lib/python3.7/site-packages/healpy/sphtfunc.py:400: FutureChangeWarning: The order of the input cl's will change in a future release.
+Use new=True keyword to start using the new order.
+See documentation of healpy.synalm.
+  category=FutureChangeWarning,
+Sigma is 0.000000 arcmin (0.000000 rad) 
+-> fwhm is 0.000000 arcmin
+Traceback (most recent call last):
+  File "compute_corr_compare.py", line 49, in <module>
+    y_values_gen_legendre = [C(r, C_l) for r in x]
+  File "compute_corr_compare.py", line 49, in <listcomp>
+    y_values_gen_legendre = [C(r, C_l) for r in x]
+  File "../../corrfunc.py", line 137, in C
+    res+= C_l[l] * ((2*l + 1)/4*np.pi) * legendre(l)(np.cos(np.radians(theta)))        
+NameError: name 'legendre' is not defined

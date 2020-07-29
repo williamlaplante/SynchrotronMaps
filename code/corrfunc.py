@@ -1,6 +1,6 @@
 import numpy as np
 import healpy as hp
-
+from scipy.special import legendre
 '''
 Notes:
 
