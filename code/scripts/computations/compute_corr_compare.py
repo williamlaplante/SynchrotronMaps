@@ -58,17 +58,17 @@ for nside in nsides:
 The arrays are composed as follows (not following same ordering, but same labeling):
 
 for nside in [1024,2048]:
-	arr_compute_corr_nside= [x_values, y_values_z1, y_error_z1,
+	arr_compute_corr_nside= [x_values, y_values_z0, y_error_z0,
+							y_values_z1, y_error_z1,
 							y_values_z2, y_error_z2,
 							y_values_z3, y_error_z3,
-							y_values_z4, y_error_z4,
 							y_values_gen_hc, y_error_gen_hc, y_values_gen_legendre]
 
 
 x_values : array of theta values constructed from nside=2048. always kept constant.
 
 y_values_z(i) : array of correlation values associated with the x_values for the z(i)th redshift range.
-				The redshift ranges are z1 : 0.1<z<0.2, z2 : 0.3<z<0.4, z3 : 0.5<z<0.6, z4 : 1.2<z<1.3.
+				The redshift ranges are z0 : 0.1<z<0.2, z1 : 0.3<z<0.4, z2 : 0.5<z<0.6, z3 : 1.2<z<1.3.
 
 y_values_gen_hc/y_error_gen_hc : correlation values associated with x_values obtained by pre-setting Cl's, generating a map
 				  from the Cl's, and using compute_corr to get correlation values and error.
