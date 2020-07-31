@@ -51,7 +51,7 @@ for nside in nsides:
 				y_error_gen_hc = list(err)
 
 	
-	filename = './out/arr_'+str(nside)+'.%d.jpg' % time.time()
+	filename = './out/arr_'+str(nside)+'.%d.npz' % time.time()
 	np.savez(filename,x_values=x, y_values_gen_legendre = y_values_gen_legendre, y_values_gen_hc = y_values_gen_hc, y_error_gen_hc = y_error_gen_hc, **{col_name: np.array(col_vals) for col_name, col_vals in Y.iteritems()}, **{col_name: np.array(col_vals) for col_name, col_vals in Y_err.iteritems()})
 
 '''
