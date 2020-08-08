@@ -20,10 +20,8 @@ class Angle {
 };
 
 arr<double> pw_dot(const arr<double> & arr1, const arr<double> & arr2);
-double sum(const arr<double> & array);
 double mean(const arr<double> & array);
 double stdev(const arr<double> & array);
-int sum(const arr<int> & array);
 double mean(const arr<int> & array);
 double stdev(const arr<int> & array);
 #endif

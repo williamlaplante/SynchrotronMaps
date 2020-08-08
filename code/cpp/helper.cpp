@@ -1,4 +1,5 @@
 #include "helper.h"
+#include <cassert>
 #ifndef PI
 #define PI 3.1415926535897932
 #endif
@@ -35,9 +36,7 @@ void Angle::arcmin_to_deg() {
 
 arr<double> pw_dot(const arr<double> & arr1, const arr<double> & arr2)
 {
-    if (arr1.size()!=arr2.size()){
-        throw "Size mismatch. Cannot execute pointwise multiplication.";
-    }
+    assert(arr1.size()!=arr2.size());
     int size = arr1.size();
     arr<double> result(size);
 
@@ -48,35 +47,26 @@ arr<double> pw_dot(const arr<double> & arr1, const arr<double> & arr2)
     return result;
 }
 
-double sum(const arr<double> & array){
-    double sum=0;
-    for (int i=0; i<array.size(); i++){
-        sum+=array[i];
-    }
-    return sum;
-}
-
-int sum(const arr<int> & array){
-    int sum=0;
-    for (int i=0; i<array.size(); i++){
-        sum+=array[i];
-    }
-    return sum;
-}
-
 double mean(const arr<int> & array)
 {
     int size = array.size();
-    if (size==0){throw "Array is of null size. Cannot take the mean of array.";}
-    int res = sum(array);
-    return res/size;
+    assert(size!=0);
+    double sum=0;
+    
+    for (int i=0; i<size; i++){
+        sum+=array[i];
+    }
+    return sum/size;
 }
 double mean(const arr<double> & array)
 {
     int size = array.size();
-    if (size==0){throw "Array is of null size. Cannot take the mean of array.";}
-    int res = sum(array);
-    return res/size;
+    assert(size!=0);
+    double sum=0;
+    for (int i=0; i<size; i++){
+        sum+=array[i];
+    }
+    return sum/size;
 }
 
 double stdev(const arr<int> & array){

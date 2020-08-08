@@ -16,6 +16,6 @@ Parameters :
 
 
 */
-std::tuple<double,double> compute_corr(Healpix_Map<double> & map1, Healpix_Map<double> & map2, Angle & R, Angle & dr);
+std::tuple<double,double> compute_corr(Healpix_Map<double> & map1, Healpix_Map<double> & map2, Angle R, Angle dr);
 
 #endif
