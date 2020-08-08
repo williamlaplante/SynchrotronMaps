@@ -3,6 +3,16 @@
 #define PI 3.1415926535897932
 #endif
 
+Angle::Angle(double val, angular_units u){
+    value = val;
+    unit = u;
+}
+
+Angle::Angle(){
+    value = 0;
+    unit = DEGREES;
+}
+
 void Angle::rad_to_deg() {
     value = (value*180)/PI;
     unit = DEGREES;

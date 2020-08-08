@@ -6,13 +6,17 @@
 enum angular_units {DEGREES, RADIANS, ARCMIN};
 
 class Angle {
+
     public:
+    Angle();
+    Angle(double, angular_units);
     double value;
     angular_units unit;
     void deg_to_rad();
     void rad_to_deg();
     void arcmin_to_deg();
     void deg_to_arcmin();
+
 };
 
 arr<double> pw_dot(const arr<double> & arr1, const arr<double> & arr2);

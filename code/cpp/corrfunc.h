@@ -1,6 +1,7 @@
 #ifndef CORRFUNC_H
 #define CORRFUNC_H
 #include <tuple>
+#include "helper.h"
 #include <healpix_cxx/healpix_map.h>
 /*
 Two-Point Correlation Function
@@ -15,6 +16,6 @@ Parameters :
 
 
 */
-std::tuple<double,double> compute_corr(Healpix_Map<double> & map1, Healpix_Map<double> & map2, const double R, const double dr);
+std::tuple<double,double> compute_corr(Healpix_Map<double> & map1, Healpix_Map<double> & map2, Angle & R, Angle & dr);
 
 #endif
