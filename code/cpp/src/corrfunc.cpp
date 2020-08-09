@@ -1,6 +1,6 @@
 #include <healpix_cxx/pointing.h>
-#include "corrfunc.h"
-#include "helper.h"
+#include "../include/corrfunc.h"
+#include "../include/helper.h"
 #include <cassert>
 
 std::tuple<double,double> compute_corr(Healpix_Map<double> & map1, Healpix_Map<double> & map2, Angle R, Angle dr) 

@@ -1,5 +1,5 @@
-#include "corrfunc.h"
-#include "helper.h"
+#include "../include/corrfunc.h"
+#include "../include/helper.h"
 #include <healpix_cxx/healpix_map_fitsio.h>
 #include <string>
 #include <ctime>
