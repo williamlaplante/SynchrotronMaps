@@ -134,5 +134,5 @@ def C(theta, C_l):
     l_max=len(C_l)
     res=0
     for l in range(l_max):
-        res+= C_l[l] * ((2*l + 1)/4*np.pi) * legendre(l)(np.cos(np.radians(theta)))        
+        res+= C_l[l] * ((2*l + 1)/(4*np.pi)) * legendre(l)(np.cos(np.radians(theta)))        
     return res
