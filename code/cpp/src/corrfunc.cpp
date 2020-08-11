@@ -2,6 +2,9 @@
 #include "../include/corrfunc.h"
 #include "../include/helper.h"
 #include <cassert>
+#include <cmath>
+
+bool isUnseen(double pixel);
 
 std::tuple<double,double> compute_corr(Healpix_Map<double> & map1, Healpix_Map<double> & map2, Angle R, Angle dr) 
 {
@@ -33,6 +36,7 @@ std::tuple<double,double> compute_corr(Healpix_Map<double> & map1, Healpix_Map<d
 
     int N;
     double sum;
+    int numUnseen;
     arr<int> result_len(Npix);
     arr<double> result_arr(Npix);
     pointing ptg;
@@ -41,14 +45,25 @@ std::tuple<double,double> compute_corr(Healpix_Map<double> & map1, Healpix_Map<d
     //Iterate over pixels
     for (int i=0; i < Npix; i++)
     {
+        if (isUnseen(map1[i])){
+            continue;
+        }
         ptg = map1.pix2ang(i); //Get theta,phi of ith pixel
         pix_range = map2.query_disc(ptg, R.value+dr.value).op_xor(map2.query_disc(ptg,R.value)); //Get the rangeset of pixels on ith annulus
         N = pix_range.toVector().size();
         assert(N>0 && "queried annulus has null size.");
-        result_len[i] = N;
         sum=0;
-        for (int pix : pix_range.toVector()){sum += map2[pix];} //sum over values at pixels in the ith annulus
+        numUnseen=0;
+        for (int pix : pix_range.toVector()){ //sum over values at non-unseen pixels in the ith annulus
+            if (isUnseen(map2[i])) {
+                numUnseen++;
+                }
+            else {
+                sum += map2[pix];
+            }
+            } 
         result_arr[i] = map1[i] * sum; // store ith correlation value
+        result_len[i] = N - numUnseen;
     }
 
     double len = mean(result_len);
@@ -57,4 +72,10 @@ std::tuple<double,double> compute_corr(Healpix_Map<double> & map1, Healpix_Map<d
 
     return std::make_tuple(result, error);
     
+}
+
+const double UNSEEN = -1.6375 * std::pow(10,30);
+
+bool isUnseen(double pixel){
+    return std::abs(pixel - UNSEEN) < 10.0;
 }

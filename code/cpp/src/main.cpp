@@ -15,10 +15,6 @@ Healpix_Map<double> map(nside, scheme, dummy);
 -------------------
 Now one can use map.fill(value) or just iterate over map and assign values.
 */
-/*
-MODIFY CORRFUNC TO TAKE CARE OF HP.UNSEEN!!!!!!!!
-
-*/
 
 
 

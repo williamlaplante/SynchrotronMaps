@@ -99,21 +99,24 @@ def remove_local(m,nest=False, rad=1):
     return np.array([m[hp.vec2pix(nside,x,y,z, nest=nest)] - m[hp.query_disc(nside, [x,y,z], np.radians(rad))].mean() for x,y,z in zip(X,Y,Z)])
 
 
+
 def generate_ref_maps(NSIDE):
     '''
     gets the full reference sample used in the dust map paper, and divides it into four
     sub-reference maps, which are divided by z intervals. Then it returns overdensity fields
     of these subsets of data in the form of healpix maps.
     '''
-    refsample = fits.open(full_path_ref + 'full_ref_sample.fits')[1].data
-    ra = refsample['RA']
-    dec = refsample['DEC']
-    z = refsample['Z']
     '''
     Note: 
     - histogram of z values in full_ref_sample.fits reveals identical shape to fig 5 in paper.
     - sample size of full_ref_sample.fits is ~1.13 mil, which is exactly as in the paper.   
+    - full_ref_sample.fits has the property that its galactic coordinates are all above 50 deg, and its limited on the zrange.
     '''
+    refsample = fits.open(full_path_ref + 'full_ref_sample.fits')[1].data
+    ra = refsample['RA']
+    dec = refsample['DEC']
+    z = refsample['Z']
+
     
     #We isolate the ranges as they do in the paper to perform plotting
     ra1, dec1 = ra[np.where((0.1<z) & (z<0.2))], dec[np.where((0.1<z) & (z<0.2))] 
@@ -130,6 +133,29 @@ def generate_ref_maps(NSIDE):
     return {'0.1<z<0.2' : ref1, '0.3<z<0.4' : ref2, '0.5<z<0.6' : ref3, '1.2<z<1.3' : ref4}
 
 
+
+
+def generate_ref_maps_v2(nside):
+    
+    refsample = fits.open(full_path_ref + 'full_ref_sample.fits')[1].data
+    ra,dec,z = refsample['RA'],refsample['DEC'],refsample['Z']
+    correct_idx = map_cut_index(nside)
+    wrong_idx = np.setdiff1d(np.arange(hp.nside2npix(nside), correct_idx))
+    ra_ranges = [ra[np.where((z1<z) & (z<z2))] for z1,z2 in zip([0.1,0.3,0.5,1.2],[0.2,0.4,0.6,1.3])]
+    dec_ranges  = [dec[np.where((z1<z) & (z<z2))] for z1,z2 in zip([0.1,0.3,0.5,1.2],[0.2,0.4,0.6,1.3])]
+
+    maps = []
+    for i in range(4):
+        arr = hp.ang2pix(nside, ra_ranges[i], dec_ranges[i], nest=nest,lonlat=True)
+        count_arr = np.histogram(arr, bins=hp.nside2npix(nside), range=[0,hp.nside2npix(nside)])[0].astype('float')
+        count_arr[correct_idx] = count_arr[correct_idx]/count_arr[correct_idx].mean() - 1
+        count_arr[wrong_idx] = hp.UNSEEN
+        count_arr = change_coord(count_arr, ['C', 'G'])
+        maps.append(count_arr)
+        
+    return maps
+    
+    
 def generate_dust_maps(NSIDE):
     '''
     Gets the re
@@ -146,3 +172,12 @@ def generate_dust_maps(NSIDE):
     map2 = remove_local(map2) #remove local average
     
     return [map1, map2]
+
+def map_cut_idx(nside, gal_cut=50):
+    '''
+    returns the index of all values in a healpix map of resolution nside respecting a galactic cut of gal_cut.
+    
+    '''
+    theta, phi = hp.pix2ang(nside, np.arange(hp.nside2npix(nside)), lonlat=True)
+    idx = SkyCoord(theta,phi,unit='deg',frame='fk5').galactic.b.value >= gal_cut
+    return np.arange(hp.nside2npix(nside))[idx]
