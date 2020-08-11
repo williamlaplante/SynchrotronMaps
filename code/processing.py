@@ -109,11 +109,19 @@ def generate_ref_maps(NSIDE):
     ra = refsample['RA']
     dec = refsample['DEC']
     z = refsample['Z']
+    '''
+    Note: 
+    - histogram of z values in full_ref_sample.fits reveals identical shape to fig 5 in paper.
+    - sample size of full_ref_sample.fits is ~1.13 mil, which is exactly as in the paper.   
+    '''
     
+    #We isolate the ranges as they do in the paper to perform plotting
     ra1, dec1 = ra[np.where((0.1<z) & (z<0.2))], dec[np.where((0.1<z) & (z<0.2))] 
     ra2, dec2 = ra[np.where((0.3<z) & (z<0.4))], dec[np.where((0.3<z) & (z<0.4))]
     ra3, dec3 = ra[np.where((0.5<z) & (z<0.6))], dec[np.where((0.5<z) & (z<0.6))]
-    ra4, dec4 = ra[np.where((1.2<z) & (z<1.3))], dec[np.where((1.2<z) & (z<1.3))] 
+    ra4, dec4 = ra[np.where((1.2<z) & (z<1.3))], dec[np.where((1.2<z) & (z<1.3))]
+    
+    #we convert to healpix format with histogram binning
     ref1 = coord2hp(ra1,dec1, NSIDE)
     ref2 = coord2hp(ra2,dec2, NSIDE)
     ref3 = coord2hp(ra3,dec3, NSIDE)
