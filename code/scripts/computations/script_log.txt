@@ -1,8 +1,0 @@
-Sigma is 0.000000 arcmin (0.000000 rad) 
--> fwhm is 0.000000 arcmin
-/Users/williiamlaplante/.local/lib/python3.7/site-packages/healpy/sphtfunc.py:400: FutureChangeWarning: The order of the input cl's will change in a future release.
-Use new=True keyword to start using the new order.
-See documentation of healpy.synalm.
-  category=FutureChangeWarning,
-Sigma is 0.000000 arcmin (0.000000 rad) 
--> fwhm is 0.000000 arcmin

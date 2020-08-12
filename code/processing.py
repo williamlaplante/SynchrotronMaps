@@ -1,6 +1,8 @@
 import healpy as hp
 import numpy as np
 from astropy.io import fits
+from astropy.coordinates import SkyCoord
+from array import array
 
 full_path_ref = '/Users/williiamlaplante/Research/SynchrotronMaps/data/ReferenceSamples/'
 full_path_dust = '/Users/williiamlaplante/Research/SynchrotronMaps/data/DustMapsData/'
@@ -139,14 +141,14 @@ def generate_ref_maps_v2(nside):
     
     refsample = fits.open(full_path_ref + 'full_ref_sample.fits')[1].data
     ra,dec,z = refsample['RA'],refsample['DEC'],refsample['Z']
-    correct_idx = map_cut_index(nside)
-    wrong_idx = np.setdiff1d(np.arange(hp.nside2npix(nside), correct_idx))
+    correct_idx = map_cut_idx(nside)
+    wrong_idx = np.setdiff1d(np.arange(hp.nside2npix(nside)), correct_idx)
     ra_ranges = [ra[np.where((z1<z) & (z<z2))] for z1,z2 in zip([0.1,0.3,0.5,1.2],[0.2,0.4,0.6,1.3])]
     dec_ranges  = [dec[np.where((z1<z) & (z<z2))] for z1,z2 in zip([0.1,0.3,0.5,1.2],[0.2,0.4,0.6,1.3])]
 
     maps = []
     for i in range(4):
-        arr = hp.ang2pix(nside, ra_ranges[i], dec_ranges[i], nest=nest,lonlat=True)
+        arr = hp.ang2pix(nside, ra_ranges[i], dec_ranges[i], nest=False,lonlat=True)
         count_arr = np.histogram(arr, bins=hp.nside2npix(nside), range=[0,hp.nside2npix(nside)])[0].astype('float')
         count_arr[correct_idx] = count_arr[correct_idx]/count_arr[correct_idx].mean() - 1
         count_arr[wrong_idx] = hp.UNSEEN
@@ -173,6 +175,16 @@ def generate_dust_maps(NSIDE):
     
     return [map1, map2]
 
+
+def generate_dust_map_1998(nside):
+    ebv1998 = np.load(full_path_dust + 'EBV_1998.npy')
+    map1 = hp.reorder(ebv1998, n2r=True) #convert ordering to ring
+    map1 = hp.ud_grade(map1, nside) #degrade or upgrade resolution to fit other maps
+    map1 = remove_local(map1) #remove local average
+    return map1
+
+
+
 def map_cut_idx(nside, gal_cut=50):
     '''
     returns the index of all values in a healpix map of resolution nside respecting a galactic cut of gal_cut.
@@ -181,3 +193,26 @@ def map_cut_idx(nside, gal_cut=50):
     theta, phi = hp.pix2ang(nside, np.arange(hp.nside2npix(nside)), lonlat=True)
     idx = SkyCoord(theta,phi,unit='deg',frame='fk5').galactic.b.value >= gal_cut
     return np.arange(hp.nside2npix(nside))[idx]
+
+
+def read_ref_map(nside, zmin, zmax):
+    if zmin not in [0.1,0.3,0.5,1.2] or zmax not in [0.2,0.4,0.6,1.3]:
+        raise Exception('Please input a correct zmin or zmax.')
+    filename = str(zmin)+'z'+str(zmax)+'_'+str(nside)+'_'+'overdensity_field.bin'
+    filepath = path_ref = "/Users/williiamlaplante/Research/SynchrotronMaps/data/processed_maps/ref_maps/" + filename
+        
+    with open(filepath, "rb") as f:
+        float_array = array('d')
+        float_array.frombytes(f.read())
+        
+    return np.frombuffer(float_array, dtype=float)
+
+def read_dust_map(nside):
+    filename = "ebv_" + str(nside) + "_1998.bin"
+    filepath = "/Users/williiamlaplante/Research/SynchrotronMaps/data/processed_maps/dust_maps/"+filename
+            
+    with open(filepath, "rb") as f:
+        float_array = array('d')
+        float_array.frombytes(f.read())
+        
+    return np.frombuffer(float_array, dtype=float)
