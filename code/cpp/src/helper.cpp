@@ -1,7 +1,7 @@
 #include "../include/helper.h"
 #include <cassert>
 #ifndef PI
-#define PI 3.1415926535897932
+#define PI 3.14159265358979323846
 #endif
 
 Angle::Angle(double val, angular_units u){
@@ -96,4 +96,3 @@ double stdev(const arr<double> & array){
     }
     return std::sqrt(sum/(N-1));
 }
-

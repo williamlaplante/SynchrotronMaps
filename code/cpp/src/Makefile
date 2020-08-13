@@ -21,7 +21,9 @@ OBJ = $(patsubst %, $(ODIR)/%, $(_OBJ))
 
 
 #define the executable file
-MAIN = corr
+EDIR = ../bin
+_MAIN = corr
+MAIN = $(patsubst %, $(EDIR)/%, $(_MAIN))
 
 #generic makefile
 #--------------------
