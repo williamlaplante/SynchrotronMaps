@@ -25,14 +25,12 @@ def compute_corr_wrap(p):
 
 
 for zmin, zmax in zip([0.1,0.3,0.5,1.2], [0.2,0.4,0.6,1.3]):
-    
     for nside in nsides:
+        dust_map = read_dust_map(nside)
         ref_map = read_ref_map(nside, zmin, zmax)
         with concurrent.futures.ProcessPoolExecutor() as executor:
-            args = ((ref_map, ref_map, R, dr) for R, dr in zip(x, thicknesses))
+            args = ((ref_map, dust_map, R, dr) for R, dr in zip(x, thicknesses))
             out = list(executor.map(compute_corr_wrap, args))
             y,err = zip(*out)
             filename = "./out/cross_corr/" + str(zmin) +'z'+ str(zmax) + '.' + str(nside) + '.%d.npz' %time.time()
             np.savez(filename, x=x, y=y, err=err)
-            
-
