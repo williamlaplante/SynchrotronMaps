@@ -39,8 +39,8 @@ for zmin, zmax in zip([0.1,0.3,0.5,1.2], [0.2,0.4,0.6,1.3]):
 
     print('Ending multiprocessing...')
     y,err = zip(*out)
-	filename = "./out/cross_corr_paper/" + str(zmin) +'z'+ str(zmax) + '.' + str(nside) + '.%d.npz' %time.time()
-	np.savez(filename, x=x, y=list(y), err=list(err))
+    filename = "./out/cross_corr_paper/" + str(zmin) +'z'+ str(zmax) + '.' + str(nside) + '.%d.npz' %time.time()
+    np.savez(filename, x=x, y=list(y), err=list(err))
 
 t2 = time.perf_counter()
 
