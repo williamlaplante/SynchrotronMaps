@@ -10,7 +10,7 @@ import concurrent.futures
 import healpy as hp
 import time
 
- t1 = time.perf_counter()
+t1 = time.perf_counter()
  
 print('Fixing parameters...')
 #Fixing parameters
@@ -38,8 +38,7 @@ for zmin, zmax in zip([0.1,0.3,0.5,1.2], [0.2,0.4,0.6,1.3]):
         out = list(executor.map(compute_corr_wrap, args))
 
     print('Ending multiprocessing...')
-    
-	y,err = zip(*out)
+    y,err = zip(*out)
 	filename = "./out/cross_corr_paper/" + str(zmin) +'z'+ str(zmax) + '.' + str(nside) + '.%d.npz' %time.time()
 	np.savez(filename, x=x, y=list(y), err=list(err))
 
