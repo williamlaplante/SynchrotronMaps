@@ -1,0 +1,6 @@
+#data
+data/
+log.txt
+
+#python compilation files
+code/__pycache__
