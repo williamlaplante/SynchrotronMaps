@@ -31,14 +31,12 @@ print('Entering zrange loop...')
 for zmin, zmax in zip([0.1,0.3,0.5,1.2], [0.2,0.4,0.6,1.3]):
     ref_map = read_ref_map(nside, zmin, zmax)
     
-    print('Starting multiprocessing...')
-
-    with concurrent.futures.ProcessPoolExecutor(max_workers = 8) as executor:
+    with concurrent.futures.ProcessPoolExecutor() as executor:
         args = ((ref_map, dust_map, R, dr) for R, dr in zip(x, thicknesses))
         out = list(executor.map(compute_corr_wrap, args))
+        y,err = zip(*out)
 
-    print('Ending multiprocessing...')
-    y,err = zip(*out)
+    print('Saving file...')    
     filename = "./out/cross_corr_paper/" + str(zmin) +'z'+ str(zmax) + '.' + str(nside) + '.%d.npz' %time.time()
     np.savez(filename, x=x, y=list(y), err=list(err))
 
