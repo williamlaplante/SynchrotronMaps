@@ -12,7 +12,7 @@ import time
 
  t1 = time.perf_counter()
  
- print('Fixing parameters...')
+print('Fixing parameters...')
 #Fixing parameters
 nside = 4096
 resol = np.degrees(hp.nside2resol(nside)) #degrees 
