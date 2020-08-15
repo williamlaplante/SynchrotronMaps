@@ -10,6 +10,7 @@ import concurrent.futures
 import healpy as hp
 import time
 
+ t1 = time.perf_counter()
  
 #Fixing parameters
 nside = 4096
@@ -22,7 +23,6 @@ thicknesses = np.append((x[1:]-x[:-1]), (x[-1]-x[-2]))
 def compute_corr_wrap(p):
 	return compute_corr(*p)
 
-
 dust_map = read_dust_map(nside)
 
 for zmin, zmax in zip([0.1,0.3,0.5,1.2], [0.2,0.4,0.6,1.3]):
@@ -31,6 +31,11 @@ for zmin, zmax in zip([0.1,0.3,0.5,1.2], [0.2,0.4,0.6,1.3]):
     with concurrent.futures.ProcessPoolExecutor() as executor:
         args = ((ref_map, dust_map, R, dr) for R, dr in zip(x, thicknesses))
         out = list(executor.map(compute_corr_wrap, args))
-        y,err = zip(*out)
-        filename = "./out/cross_corr_paper/" + str(zmin) +'z'+ str(zmax) + '.' + str(nside) + '.%d.npz' %time.time()
-        np.savez(filename, x=x, y=list(y), err=list(err))
+
+	y,err = zip(*out)
+	filename = "./out/cross_corr_paper/" + str(zmin) +'z'+ str(zmax) + '.' + str(nside) + '.%d.npz' %time.time()
+	np.savez(filename, x=x, y=list(y), err=list(err))
+
+t2 = time.perf_counter()
+
+print('Program terminated in %f second(s)' %(t2-t1))
