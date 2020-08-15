@@ -1,0 +1,116 @@
+Traceback (most recent call last):
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/queues.py", line 242, in _feed
+    send_bytes(obj)
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 393, in _send_bytes
+    header = struct.pack("!i", n)
+struct.error: 'i' format requires -2147483648 <= number <= 2147483647
+Traceback (most recent call last):
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/queues.py", line 242, in _feed
+    send_bytes(obj)
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 393, in _send_bytes
+    header = struct.pack("!i", n)
+struct.error: 'i' format requires -2147483648 <= number <= 2147483647
+Traceback (most recent call last):
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/queues.py", line 242, in _feed
+    send_bytes(obj)
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 393, in _send_bytes
+    header = struct.pack("!i", n)
+struct.error: 'i' format requires -2147483648 <= number <= 2147483647
+Traceback (most recent call last):
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/queues.py", line 242, in _feed
+    send_bytes(obj)
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 393, in _send_bytes
+    header = struct.pack("!i", n)
+struct.error: 'i' format requires -2147483648 <= number <= 2147483647
+Traceback (most recent call last):
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/queues.py", line 242, in _feed
+    send_bytes(obj)
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 393, in _send_bytes
+    header = struct.pack("!i", n)
+struct.error: 'i' format requires -2147483648 <= number <= 2147483647
+Traceback (most recent call last):
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/queues.py", line 242, in _feed
+    send_bytes(obj)
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 393, in _send_bytes
+    header = struct.pack("!i", n)
+struct.error: 'i' format requires -2147483648 <= number <= 2147483647
+Traceback (most recent call last):
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/queues.py", line 242, in _feed
+    send_bytes(obj)
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 393, in _send_bytes
+    header = struct.pack("!i", n)
+struct.error: 'i' format requires -2147483648 <= number <= 2147483647
+Traceback (most recent call last):
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/queues.py", line 242, in _feed
+    send_bytes(obj)
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 393, in _send_bytes
+    header = struct.pack("!i", n)
+struct.error: 'i' format requires -2147483648 <= number <= 2147483647
+Traceback (most recent call last):
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/queues.py", line 242, in _feed
+    send_bytes(obj)
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 393, in _send_bytes
+    header = struct.pack("!i", n)
+struct.error: 'i' format requires -2147483648 <= number <= 2147483647
+Traceback (most recent call last):
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/queues.py", line 242, in _feed
+    send_bytes(obj)
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 393, in _send_bytes
+    header = struct.pack("!i", n)
+struct.error: 'i' format requires -2147483648 <= number <= 2147483647
+Traceback (most recent call last):
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/queues.py", line 242, in _feed
+    send_bytes(obj)
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 393, in _send_bytes
+    header = struct.pack("!i", n)
+struct.error: 'i' format requires -2147483648 <= number <= 2147483647
+Traceback (most recent call last):
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/queues.py", line 242, in _feed
+    send_bytes(obj)
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 393, in _send_bytes
+    header = struct.pack("!i", n)
+struct.error: 'i' format requires -2147483648 <= number <= 2147483647
+Traceback (most recent call last):
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/queues.py", line 242, in _feed
+    send_bytes(obj)
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/multiprocessing/connection.py", line 393, in _send_bytes
+    header = struct.pack("!i", n)
+struct.error: 'i' format requires -2147483648 <= number <= 2147483647
+Traceback (most recent call last):
+  File "compute_corr_paper.py", line 33, in <module>
+    out = list(executor.map(compute_corr_wrap, args))
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/concurrent/futures/process.py", line 483, in _chain_from_iterable_of_lists
+    for element in iterable:
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/concurrent/futures/_base.py", line 598, in result_iterator
+    yield fs.pop().result()
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/concurrent/futures/_base.py", line 435, in result
+    return self.__get_result()
+  File "/Users/williiamlaplante/opt/anaconda3/lib/python3.7/concurrent/futures/_base.py", line 384, in __get_result
+    raise self._exception
+concurrent.futures.process.BrokenProcessPool: A process in the process pool was terminated abruptly while the future was running or pending.
