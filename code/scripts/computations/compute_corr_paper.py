@@ -33,7 +33,7 @@ for zmin, zmax in zip([0.1,0.3,0.5,1.2], [0.2,0.4,0.6,1.3]):
     
     print('Starting multiprocessing...')
 
-    with concurrent.futures.ProcessPoolExecutor() as executor:
+    with concurrent.futures.ProcessPoolExecutor(max_workers = 8) as executor:
         args = ((ref_map, dust_map, R, dr) for R, dr in zip(x, thicknesses))
         out = list(executor.map(compute_corr_wrap, args))
 
