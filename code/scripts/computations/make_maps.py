@@ -19,7 +19,7 @@ for nside in [128, 256, 512]:
     dust_map = generate_dust_map_1998(nside)
     filename = 'ebv_' + str(nside) + '_1998.bin'
     with open(full_path_dust + filename, "wb") as f:
-            array('d', m).tofile(f)
+            array('d', m).tofile(f) #potential mistake here, should be dust_map instead of m!
         
         
        
